@@ -59,7 +59,7 @@ function TopForm(props) {
               <option value={'tr'}>Turkey</option>
               <option value={'tw'}>Taiwan, Province of China</option>
               <option value={'ua'}>Ukraine</option>
-              <option value={'us'}>United States of America</option>
+              <option value={'us'} selected>United States of America</option>
               <option value={'ve'}>Venezuela (Bolivarian Republic of)</option>
               <option value={'za'}>South Africa</option>
           </select>
