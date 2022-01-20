@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import logo from './images/logo.jpg'
 import { format, parseISO } from 'date-fns'
+import axios from 'axios'
 
 function News(props) {
 
@@ -17,18 +18,18 @@ function News(props) {
         //Create content placeholder   
         const content = (item.description!='' && item.description!=null) ? item.description : 'Please visit website to read full article';
         //Create image placeholder
-        let image = item.urlToImage!=null ? item.urlToImage : logo;
-        fetch(item.urlToImage).then(res => {
-          if (res.status!=200) {
-            image=logo;
-          }
-        }
-          )
+        let image = item.urlToImage 
+        // axios.get(item.urlToImage,{'Access-Control-Allow-Origin': '*'}).then(res => {
+        //   if (res.status!=200) {
+        //     image=logo;
+        //   }
+        // }
+        //   )
         //display News
         return (
         <div key={index}>
         <Card  style={{ width: '18rem' }}>
-            <Card.Img variant="top"  src={image} />
+            <Card.Img variant="top"  src={image ? image : "https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"} />
             <Card.Body>
             <Card.Title>{item.title}</Card.Title>
             <Card.Text>
@@ -37,7 +38,7 @@ function News(props) {
             <Button variant="primary" onClick={()=>{window.open(item.url, "_blank")}}>Read Full Story</Button>
             </Card.Body>
             <Card.Footer className="text-muted"> 
-              Source: <a href={item.url} target="_blank"> {item.source.name}</a><br></br> 
+              Source: <a href={item.url } target="_blank"> {item.source.name}</a><br></br> 
               Author: {item.author}<br></br>
               Published At: {format(parseISO(item.publishedAt),"dd-MM-yyyy HH:mm")}
             </Card.Footer>

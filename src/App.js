@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import Headlines from './Headlines'
 import TopForm from './TopForm';
-
+import axios from 'axios';
 
 class App extends Component {
     //Initial state
@@ -10,7 +10,15 @@ class App extends Component {
         countryCode : 'us',
         category: 'All',
         search: '',
-        isSearch: false
+        isSearch: false ,
+        countryName: '',
+        countryCode1: '',
+    }
+
+    componentDidMount(){
+        axios.get('https://extreme-ip-lookup.com/json/?key=oxbC9wvdhr0mAXiwDspJ').then((data)=>{
+            console.log("dazdza",data)
+        })
     }
 
     render() {
@@ -46,6 +54,19 @@ class App extends Component {
         })
     }
     
+    getGeoInfo = () => {
+        axios.get('https://extreme-ip-lookup.com/json/?key=oxbC9wvdhr0mAXiwDspJ',{'Access-Control-Allow-Origin': '*'}).then((response) => {
+            let data = response.data;
+            this.setState({
+                countryName: data.country_name,
+                countryCode1: data.country_calling_code
+            });
+            console.log(data);
+            console.log(this.state.countryName, '-', this.state.countryCode1)
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
 
 
 }

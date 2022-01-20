@@ -41,7 +41,9 @@ render() {
 
     let fullUrl = isSearch==true ? (url+searchPre+search+api) : categoryName=='All' ? (url+country+countryCode+api) : (url+country+countryCode+category+categoryName+api) ;
     //Get Data
-    axios.get(fullUrl).then((results) => {
+    axios.get(fullUrl,{
+        'Content-Type': 'application/json'
+}).then((results) => {
         this.setState({
             data: results.data.articles
         })
