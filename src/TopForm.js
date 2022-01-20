@@ -1,12 +1,15 @@
-import React from 'react'
+//Top form Component 
+import React, { useState }  from 'react'
 
 
 function TopForm(props) {
 
+    const [searchTerm,setSearchTerm] = useState('');  
 
     return (
     <form>
-        <label htmlFor='selectId'>Select country</label>
+        {/* Country Code selector */}
+        <label htmlFor='selectId'>Select country: </label>
       <select  id="selectId" name ="selectId" onChange={(event)=>props.handleChange(event.target.value)}>
               <option value={'ae'}>United Arab Emirates</option>
               <option value={'ar'}>Argentina</option>
@@ -63,8 +66,26 @@ function TopForm(props) {
               <option value={'ve'}>Venezuela (Bolivarian Republic of)</option>
               <option value={'za'}>South Africa</option>
           </select>
+          <br></br>
+        <label htmlFor='selectCategory'>Select Category: </label>
+        <select id='selectCategory' name='selectCategory' onChange={(event)=>props.handleChangeCategory(event.target.value)}>
+            <option value={'All'}>All Categories</option>
+            <option value={'business'}>Business</option>
+            <option value={'entertainment'}>Entertainment</option>
+            <option value={'general'}>General</option>
+            <option value={'health'}>Health</option>
+            <option value={'science'}>Science</option>
+            <option value={'sports'}>Sports</option>
+            <option value={'technology'}>Technology</option>
+        </select>
+        <br></br>
+        <label htmlFor='search'>Search News: </label>
+        <input id='search' name='search' onChange={(event)=> setSearchTerm(event.target.value) }></input>
+        <input type="button" value="Submit" onClick={()=>props.handleSearch(searchTerm)} />
     </form>
     )
 }
+
+    
 
 export default TopForm

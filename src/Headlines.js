@@ -1,68 +1,59 @@
+//Headlines Component
 import React, {Component} from 'react'
 import axios from 'axios'
 import News from './News';
-import TopForm from './TopForm';
+
 
 class Headlines extends Component {
+
+    //Initial state
 state = {
     data:[],
-    countryCode : 'us',
+    countryCode: '',
+    category: '',
+    searchTerm: '',
+    
+}
+//Receive Country Code from App
+constructor(props) {
+    super(props);
+
+    console.log(this.props.co)
 }
 
-componentDidMount() {
+    //Display data
+render() {
+    console.log(this.props.countryCode + "-" + this.state.countryCode)
+    if (this.props.countryCode!=this.state.countryCode || this.props.category!=this.state.category || this.props.search!=this.state.searchTerm) {
+        this.setState({countryCode: this.props.countryCode})
+        this.setState({category: this.props.category})
+        this.setState({searchTerm: this.props.search})
+        //Create proper API URL
     const url='https://newsapi.org/v2/top-headlines?';
     const country='country=';
-    let countryCode = this.state.countryCode;
+    const category='&category=';
+    let countryCode = this.props.countryCode;
+    let categoryName=this.props.category;
+    const searchPre = 'q=';
+    let search = this.props.search;
     const api='&apiKey=d34aacd8470a497b9e1facfa662dcf63';
+    let isSearch = this.props.isSearch 
 
-    let fullUrl = url+country+countryCode+api;
-
+    let fullUrl = isSearch==true ? (url+searchPre+search+api) : categoryName=='All' ? (url+country+countryCode+api) : (url+country+countryCode+category+categoryName+api) ;
+    //Get Data
     axios.get(fullUrl).then((results) => {
         this.setState({
             data: results.data.articles
         })
+        console.log(fullUrl)
         console.log(this.state.data)
     })
+    }
 
-}
-
-render() {
     return <div>
-        <TopForm handleChange={this.handleChange}/>
         <News articles={this.state.data}/>
-    </div>
-
-
- 
+    </div> 
 }
-
- handleChange = (sid) =>  {
-    
-
-    this.setState ({countryCode : sid},()=>{
-        console.log(this.state.countryCode)
-    })
-
-    setTimeout(() => {
-        const url='https://newsapi.org/v2/top-headlines?';
-    const country='country=';
-    let countryCode = this.state.countryCode;
-    const api='&apiKey=d34aacd8470a497b9e1facfa662dcf63';
-
-    let fullUrl = url+country+countryCode+api;
-        axios.get(fullUrl).then((results) => {
-            this.setState({
-                data: results.data.articles
-            })
-        })
-      
-      }, 100);
-
-    
-
-
-}
-
 }
 
 export default Headlines

@@ -15,4 +15,13 @@ code {
 .newsgrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 1rem;
 }
+
+.mainLayout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 1rem;
+}
+
+
