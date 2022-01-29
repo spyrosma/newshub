@@ -3,14 +3,18 @@ import React, { useState }  from 'react'
 
 
 function TopForm(props) {
-
-    const [searchTerm,setSearchTerm] = useState('');  
-
+    
+    const [searchTerm,setSearchTerm] = useState('');
+    const [city,setCity] =  useState('');
+    console.log('Props: ',props)
+    let defaultCountry = props.countryCode;
+    console.log('Country: ', defaultCountry)
+    // let currentCountry = this.props.countryCode || 'us'
     return (
     <form>
         {/* Country Code selector */}
         <label htmlFor='selectId'>Select country: </label>
-      <select  id="selectId" name ="selectId" onChange={(event)=>props.handleChange(event.target.value)}>
+      <select  defaultValue={'gr'}  id="selectId" name ="selectId" onChange={(event)=>props.handleChange(event.target.value)}>
               <option value={'ae'}>United Arab Emirates</option>
               <option value={'ar'}>Argentina</option>
               <option value={'at'}>Austria</option>
@@ -62,7 +66,7 @@ function TopForm(props) {
               <option value={'tr'}>Turkey</option>
               <option value={'tw'}>Taiwan, Province of China</option>
               <option value={'ua'}>Ukraine</option>
-              <option value={'us'} selected>United States of America</option>
+              <option value={'us'}>United States of America</option>
               <option value={'ve'}>Venezuela (Bolivarian Republic of)</option>
               <option value={'za'}>South Africa</option>
           </select>
@@ -82,6 +86,11 @@ function TopForm(props) {
         <label htmlFor='search'>Search News: </label>
         <input id='search' name='search' onChange={(event)=> setSearchTerm(event.target.value) }></input>
         <input type="button" value="Submit" onClick={()=>props.handleSearch(searchTerm)} />
+        <br></br>
+        <label htmlFor='city'>Set City</label>
+        <input id='city' name='city' onChange={(event) => setCity(event.target.value)} />
+        <input type='button' value='City' onClick={()=>props.handleCity(city)} />
+        <input type="button" value="Save" onClick={()=>props.handleSave()} />
     </form>
     )
 }

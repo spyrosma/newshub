@@ -28,8 +28,8 @@ function News(props) {
         //display News
         return (
         <div key={index}>
-        <Card  style={{ width: '18rem' }}>
-            <Card.Img variant="top"  src={image ? image : "https://interactive-examples.mdn.mozilla.net/media/cc0-images/grapefruit-slice-332-332.jpg"} />
+        <Card  border="info"  style={{ width: '18rem' }}>
+            <Card.Img variant="top"  src={image ? image : logo} />
             <Card.Body>
             <Card.Title>{item.title}</Card.Title>
             <Card.Text>

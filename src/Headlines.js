@@ -18,7 +18,7 @@ state = {
 constructor(props) {
     super(props);
 
-    console.log(this.props.co)
+    console.log(this.props.countryCode)
 }
 
     //Display data
