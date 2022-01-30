@@ -8,6 +8,19 @@ function Weather(props) {
     const [city,setCity] = useState('');
     const [lat,setLat] = useState('')
 
+    const days  = [0,1,2,3,4,5,6,7]
+    const wDays = days.map((day) => 
+    <table className='wtable'>
+      <tr>
+        <td>{convertDate(weather['daily'][day]['dt'])}</td>
+        <td rowSpan='2'><img  src={getIcon(weather['daily'][day]['weather'][0]['icon'])}></img></td>
+      </tr>
+      <tr>
+        <td> {convertTemp(weather['daily'][day]['temp']['max'])} / {convertTemp(weather['daily'][day]['temp']['min'])} °C {weather['daily'][day]['weather'][0]['description']}</td>
+      </tr>
+    </table>
+     )
+
     
     const api='1e67c0bf8b80689eb8791ed890d004fc';
 
@@ -22,7 +35,7 @@ function Weather(props) {
     // console.log(data['main'][0])
     console.log(data['timezone'])
     console.log(data['current'])
-    setWeather({timezone:data['timezone'], current:data['current'],});
+    setWeather({timezone:data['timezone'], current:data['current'], daily:data['daily']});
     console.log("Weather: ", data)
     setCity(props.city);
     setCountry(props.country);
@@ -34,12 +47,18 @@ function Weather(props) {
 
 return <div className='weather'>
     <h1>Weather Forecast</h1>
-    <h2>{props.city}</h2>
-    <h3>{weather['timezone']}</h3>
-    <h3>Sunrise: {convertTime(weather['current']['sunrise'])}</h3>
-    <h3>Sunset:  {convertTime(weather['current']['sunset'])}</h3>
-    <h3>Temp: {convertTemp(weather['current']['temp'])} Celsius</h3>
-    <h3><img src={getIcon(weather['current']['weather'][0]['icon'])}></img>{weather['current']['weather'][0]['description']}</h3>
+    <h2><img src={getIcon(weather['current']['weather'][0]['icon'])}></img> {props.city}</h2>
+    <p>Timezone: {weather['timezone']}</p>
+    <p>Sunrise: {convertTime(weather['current']['sunrise'])} -
+    Sunset:  {convertTime(weather['current']['sunset'])}</p>
+    <p>Temp: {convertTemp(weather['current']['temp'])} °C -
+    Feels Like: {convertTemp(weather['current']['feels_like'])} °C</p>
+    <p>{weather['current']['weather'][0]['description']}</p>
+    <h3>8-day forecast</h3>
+    <div>
+      {wDays}
+    </div>
+    
 </div>
     
 }
@@ -60,6 +79,17 @@ var date = new Date(sec * 1000);
 var timestr = date.toLocaleTimeString();
 return timestr;
   
+}
+
+function convertDate(time) {
+
+  const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+  var sec = time;
+  var date = new Date(sec * 1000);
+  var dateStr = date.toLocaleDateString('en-us', options);
+
+  return dateStr;
+
 }
 
 export default Weather;
