@@ -52,6 +52,8 @@ render() {
     })
     }
 
+
+
     return <div>
         <News articles={this.state.data}/>
     </div> 

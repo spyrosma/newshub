@@ -28,11 +28,11 @@ function News(props) {
         //display News
         return (
         <div key={index}>
-        <Card  border="info"  style={{ width: '18rem' }}>
+        <Card  border="info"  style={{ width: '18rem',height:"36rem" }}>
             <Card.Img variant="top"  src={image ? image : logo} />
             <Card.Body>
-            <Card.Title>{item.title}</Card.Title>
-            <Card.Text>
+            <Card.Title className='cardTitle'>{item.title}</Card.Title>
+            <Card.Text className='cardTitle'>
             {content}
             </Card.Text>
             <Button variant="primary" onClick={()=>{window.open(item.url, "_blank")}}>Read Full Story</Button>

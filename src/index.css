@@ -12,6 +12,43 @@ code {
     monospace;
 }
 
+fieldset {
+  background-color: #eeeeee;
+  height: 75%;
+}
+
+legend {
+  background-color: gray;
+  color: white;
+  padding: 5px 10px;
+}
+
+.myFieldSet {
+  border: 1px groove #ddd !important;
+  padding: 0 1.4em 1.4em 1.4em !important;
+  margin: 0 0 1.5em 0 !important;
+  -webkit-box-shadow: 0px 0px 0px 0px #000;
+  box-shadow: 0px 0px 0px 0px #000;
+  margin-top: 30px !important;
+}
+
+.myLegend {
+  font-size: 1.2em !important;
+  font-weight: bold !important;
+  text-align: left !important;
+  width: auto;
+  padding: 0 10px;
+  border-bottom: none;
+  margin-top: -15px;
+  background-color: white;
+  color: black;
+}
+
+.formDisplay {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
 .newsgrid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -24,15 +61,28 @@ code {
   column-gap: 1rem;
 }
 
+.cardTitle {
+  height: auto;
+  max-height:6rem;
+  overflow: hidden;
+  
+}
+
+.cardTitle:hover {
+  height: auto;
+  max-height: fit-content;
+  overflow: visible;
+  
+}
+
 
 
 .weather {
-  background-color: yellow;
+  
   text-align: center;
-  height: 100%;
 }
 
-.wtable {
+.wTable {
   margin-left: auto;
   margin-right: auto;
   margin-top: 1rem;
@@ -40,6 +90,14 @@ code {
   border: 1px solid black;
   border-collapse: collapse;
   width: 75%;
+}
+
+.wInnertable {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  width: 100%;
+  border-spacing: 1rem;
 }
 
 

@@ -1,5 +1,7 @@
 //Top form Component 
 import React, { useState }  from 'react'
+import logo from './images/logo.jpg'
+
 
 
 function TopForm(props) {
@@ -11,10 +13,15 @@ function TopForm(props) {
     console.log('Country: ', defaultCountry)
     // let currentCountry = this.props.countryCode || 'us'
     return (
-    <form>
-        {/* Country Code selector */}
+    <form className='formDisplay'>
+        <div>
+            <img src={logo} width={'150px'} height={'150px'}></img>
+        </div>
+        <div>
+        <fieldset className='myFieldSet'>
+        <legend className='myLegend'>Select News</legend><br></br>
         <label htmlFor='selectId'>Select country: </label>
-      <select  defaultValue={'gr'}  id="selectId" name ="selectId" onChange={(event)=>props.handleChange(event.target.value)}>
+        <select  defaultValue={'gr'}  id="selectId" name ="selectId" onChange={(event)=>props.handleChange(event.target.value)}>
               <option value={'ae'}>United Arab Emirates</option>
               <option value={'ar'}>Argentina</option>
               <option value={'at'}>Austria</option>
@@ -82,15 +89,35 @@ function TopForm(props) {
             <option value={'sports'}>Sports</option>
             <option value={'technology'}>Technology</option>
         </select>
-        <br></br>
-        <label htmlFor='search'>Search News: </label>
-        <input id='search' name='search' onChange={(event)=> setSearchTerm(event.target.value) }></input>
-        <input type="button" value="Submit" onClick={()=>props.handleSearch(searchTerm)} />
-        <br></br>
-        <label htmlFor='city'>Set City</label>
-        <input id='city' name='city' onChange={(event) => setCity(event.target.value)} />
-        <input type='button' value='City' onClick={()=>props.handleCity(city)} />
-        <input type="button" value="Save" onClick={()=>props.handleSave()} />
+        </fieldset>
+        </div>
+        {/* Country Code selector */}
+        
+      
+        <div>
+        <fieldset className='myFieldSet'>
+        <legend className='myLegend'>Search News</legend><br></br>
+            <label htmlFor='search'>Search News: </label>
+            <input id='search' name='search' onChange={(event)=> setSearchTerm(event.target.value) }></input><br></br>
+            <input type="button" variant="primary" value="Submit" onClick={()=>props.handleSearch(searchTerm)} />
+        </fieldset>
+        </div>
+        
+        <div>
+        <fieldset className='myFieldSet'>
+        <legend className='myLegend'>Check Weather</legend><br></br>
+            <label htmlFor='city'>Set City: </label>
+            <input id='city' name='city' onChange={(event) => setCity(event.target.value)} /><br></br>
+            <input type='button' value='Set City' onClick={()=>props.handleCity(city)} />
+        </fieldset>
+        </div>
+        <div>
+        <fieldset className='myFieldSet'>
+        <legend className='myLegend'>Save Preferences</legend><br></br>
+            <input type="button" value="Save" onClick={()=>props.handleSave()} />
+        </fieldset>
+        </div>
+       
     </form>
     )
 }
