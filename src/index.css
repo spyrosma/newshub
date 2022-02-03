@@ -15,6 +15,7 @@ code {
 fieldset {
   background-color: #eeeeee;
   height: 75%;
+  width: 99%;
 }
 
 legend {
@@ -22,6 +23,14 @@ legend {
   color: white;
   padding: 5px 10px;
 }
+
+
+.btnMobile
+{
+  display: none;
+}
+
+
 
 .myFieldSet {
   border: 1px groove #ddd !important;
@@ -53,12 +62,20 @@ legend {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 1rem;
+  column-gap: 1rem;
+  padding-left: 1rem;
 }
 
 .mainLayout {
   display: grid;
   grid-template-columns: 2fr 1fr;
   column-gap: 1rem;
+}
+
+.card {
+  width: 18rem;
+  height:36rem;
+  overflow: hidden;
 }
 
 .cardTitle {
@@ -78,8 +95,8 @@ legend {
 
 
 .weather {
-  
   text-align: center;
+  margin-bottom: 300px;
 }
 
 .wTable {
@@ -99,5 +116,80 @@ legend {
   width: 100%;
   border-spacing: 1rem;
 }
+@media only screen  and (max-width: 1199px) {
+
+  .formDisplay {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .first {
+    grid-row-start: 2;
+  }
+
+  .second {
+    grid-row-start: 3;
+  }
+
+
+  .newsgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    row-gap: 1rem;
+    column-gap: 4rem;
+    padding-left: 1rem;
+  }
+
+  .mainLayout {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 3rem;
+  }
+  
+}
+@media only screen and (max-width: 576px) {
+
+  #cardText {
+    display: none;
+  }
+
+  .card {
+    height: fit-content;
+    max-height: 30rem;
+  }
+
+  .btnMobile
+{
+  display: block;
+}
+
+.first {
+  display: none;
+}
+
+.second {
+  display: none;
+}
+
+  .formDisplay {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  
+  .newsgrid {
+    display: grid;
+    grid-template-columns: 1fr ;
+    row-gap: 1rem;
+  }
+  
+  .mainLayout {
+    display: grid;
+    grid-template-columns: 1fr;
+    column-gap: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  
+  }
 
 

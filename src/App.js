@@ -96,7 +96,7 @@ class App extends Component {
         <div className='mainLayout'>
         {/* display headlines by country */}
         <Headlines countryCode={this.state.countryCode} category={this.state.category} search={this.state.search} isSearch={this.state.isSearch} />
-        {/* <Weather country={this.state.countryCode} city={this.state.city} lat={this.state.lat} lon={this.state.lon} /> */}
+        <Weather country={this.state.countryCode} city={this.state.city} lat={this.state.lat} lon={this.state.lon} />
         </div>
         </>
         )
