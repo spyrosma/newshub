@@ -1,6 +1,6 @@
 //Top form Component 
 import React, { useState }  from 'react'
-import logo from './images/logo.jpg'
+import logo from './images/logo.png'
 
 
 
@@ -19,7 +19,7 @@ function TopForm(props) {
     return (
     <form className='formDisplay'>
         <div>
-            <img src={logo} width={'150px'} height={'150px'}></img>
+            <img src={logo} width={'300px'} height={'150px'} ></img>
         </div>
         <div className='btnMobile'>
             <button onClick={(event)=>setMFormView(!mFormView)}>Settings</button>
@@ -28,7 +28,7 @@ function TopForm(props) {
         <fieldset className='myFieldSet'>
         <legend className='myLegend'>Select News</legend><br></br>
         <label htmlFor='selectId'>Select country: </label>
-        <select  width='fit-content' defaultValue={'gr'}  id="selectId" name ="selectId" onChange={(event)=>props.handleChange(event.target.value)}>
+        <select  width='fit-content' defaultValue={localStorage.getItem("country")}  id="selectId" name ="selectId" onChange={(event)=>props.handleChange(event.target.value)}>
               <option value={'ae'}>United Arab Emirates</option>
               <option value={'ar'}>Argentina</option>
               <option value={'at'}>Austria</option>
@@ -85,8 +85,8 @@ function TopForm(props) {
               <option value={'za'}>South Africa</option>
           </select>
           <br></br>
-        <label htmlFor='selectCategory'>Select Category: </label>
-        <select id='selectCategory' name='selectCategory' onChange={(event)=>props.handleChangeCategory(event.target.value)}>
+        <label htmlFor='selectCategory'>Select Category: </label><r></r>
+        <select id='selectCategory' name='selectCategory' defaultValue={localStorage.getItem("category")} onChange={(event)=>props.handleChangeCategory(event.target.value)}>
             <option value={'All'}>All Categories</option>
             <option value={'business'}>Business</option>
             <option value={'entertainment'}>Entertainment</option>
@@ -104,7 +104,7 @@ function TopForm(props) {
         <div className='first'>
         <fieldset className='myFieldSet'>
         <legend className='myLegend'>Search News</legend><br></br>
-            <label htmlFor='search'>Search News: </label>
+            <label htmlFor='search'>Search News: </label><br></br>
             <input id='search' name='search' onChange={(event)=> setSearchTerm(event.target.value) }></input><br></br>
             <input type="button" variant="primary" value="Submit" onClick={()=>props.handleSearch(searchTerm)} />
         </fieldset>
@@ -113,7 +113,7 @@ function TopForm(props) {
         <div className='second'>
         <fieldset className='myFieldSet'>
         <legend className='myLegend'>Check Weather</legend><br></br>
-            <label htmlFor='city'>Set City: </label>
+            <label htmlFor='city'>Set City: </label><br></br>
             <input id='city' name='city' onChange={(event) => setCity(event.target.value)} /><br></br>
             <input type='button' value='Set City' onClick={()=>props.handleCity(city)} />
         </fieldset>

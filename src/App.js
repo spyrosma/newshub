@@ -9,14 +9,17 @@ class App extends Component {
     state = {
         //Country Code for news selection, default value us, take from Top Form ad passed to Headlines
         countryCode : 'us',
+        //Category for ews selection
         category: 'All',
+        //Search string and search state
         search: '',
         isSearch: false ,
+        //city info for weather component
         city: '',
         lat:'',
         lon:'',
     }
-
+    //temp values
     tempCountry = '';
     tempCity = '';
     tempCategory = '';
@@ -114,32 +117,32 @@ class App extends Component {
 
     }
 
-    //function to handle change od country code 
+    //function to handle change ond country code 
     handleChange = (sid) => {
         this.setState ({countryCode : sid, isSearch: false},()=>{
             console.log("App cc"+this.state.countryCode)
         })
     }
-
+    //function to handle change on category
     handleChangeCategory = (sid) => {
         this.setState ({category : sid, isSearch:false},()=>{
             console.log("App category"+this.state.category)
         })
     }
-
+    //function to handle search
     handleSearch = (searchTerm) => {
         this.setState({search: searchTerm, isSearch: true},()=>{
             console.log("App Search"+this.state.category)
         })
     }
-    
+    //function to find lat and long of a city
     handleCity = (cityName) => {
         const api='1e67c0bf8b80689eb8791ed890d004fc';
         let fullUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+cityName+'&appid='+api;
         axios.get(fullUrl,{
             'Content-Type': 'application/json'
     }).then((response)=>{
-        console.log('Response: ',response)
+
         this.setState({
             city: cityName,
             lat: response.data[0].lat,

@@ -2,6 +2,7 @@
 import React, {Component} from 'react'
 import axios from 'axios'
 import News from './News';
+import NewsCarousel from './NewsCarousel';
 
 
 class Headlines extends Component {
@@ -17,14 +18,12 @@ state = {
 //Receive Country Code from App
 constructor(props) {
     super(props);
-
-    console.log(this.props.countryCode)
 }
 
     //Display data
 render() {
     console.log(this.props.countryCode + "-" + this.state.countryCode)
-    if (this.props.countryCode!=this.state.countryCode || this.props.category!=this.state.category || this.props.search!=this.state.searchTerm) {
+    if (this.props.countryCode!==this.state.countryCode || this.props.category!==this.state.category || this.props.search!==this.state.searchTerm) {
         this.setState({countryCode: this.props.countryCode})
         this.setState({category: this.props.category})
         this.setState({searchTerm: this.props.search})
@@ -39,7 +38,7 @@ render() {
     const api='&apiKey=d34aacd8470a497b9e1facfa662dcf63';
     let isSearch = this.props.isSearch 
 
-    let fullUrl = isSearch==true ? (url+searchPre+search+api) : categoryName=='All' ? (url+country+countryCode+api) : (url+country+countryCode+category+categoryName+api) ;
+    let fullUrl = isSearch===true ? (url+searchPre+search+api) : categoryName==='All' ? (url+country+countryCode+api) : (url+country+countryCode+category+categoryName+api) ;
     //Get Data
     axios.get(fullUrl,{
         'Content-Type': 'application/json'
@@ -47,14 +46,13 @@ render() {
         this.setState({
             data: results.data.articles
         })
-        console.log(fullUrl)
-        console.log(this.state.data)
     })
     }
 
 
 
     return <div>
+        <NewsCarousel articles={this.state.data}/>
         <News articles={this.state.data}/>
     </div> 
 }
