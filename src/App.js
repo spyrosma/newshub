@@ -29,7 +29,8 @@ class App extends Component {
     componentDidMount(){
         
         //Get Geolocation info
-        axios.get('https://extreme-ip-lookup.com/json/?key=oxbC9wvdhr0mAXiwDspJ',{
+        //axios.get('https://extreme-ip-lookup.com/json/?key=oxbC9wvdhr0mAXiwDspJ'
+        axios.get('http://localhost:4000/location',{
             'Content-Type': 'application/json'
     }).then((response)=>{
             console.log('Data: '+JSON.stringify(response.data));

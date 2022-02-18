@@ -22,23 +22,27 @@ constructor(props) {
 
     //Display data
 render() {
+    
     console.log(this.props.countryCode + "-" + this.state.countryCode)
     if (this.props.countryCode!==this.state.countryCode || this.props.category!==this.state.category || this.props.search!==this.state.searchTerm) {
         this.setState({countryCode: this.props.countryCode})
         this.setState({category: this.props.category})
         this.setState({searchTerm: this.props.search})
         //Create proper API URL
-    const url='https://newsapi.org/v2/top-headlines?';
-    const country='country=';
-    const category='&category=';
+    // const url='https://newsapi.org/v2/top-headlines?';
+    // const country='country=';
+    // const category='&category=';
     let countryCode = this.props.countryCode;
     let categoryName=this.props.category;
-    const searchPre = 'q=';
+    // const searchPre = 'q=';
     let search = this.props.search;
-    const api='&apiKey=d34aacd8470a497b9e1facfa662dcf63';
+    // const api='&apiKey=d34aacd8470a497b9e1facfa662dcf63';
     let isSearch = this.props.isSearch 
+    console.log('Props:',countryCode,categoryName,search,isSearch)
 
-    let fullUrl = isSearch===true ? (url+searchPre+search+api) : categoryName==='All' ? (url+country+countryCode+api) : (url+country+countryCode+category+categoryName+api) ;
+    // let fullUrl = isSearch===true ? (url+searchPre+search+api) : categoryName==='All' ? (url+country+countryCode+api) : (url+country+countryCode+category+categoryName+api) ;
+    let fullUrl='http://localhost:4000/news?country='+countryCode+'&category='+categoryName+'&search='+search+'&isSearch='+isSearch;
+    console.log('FulUrl:',fullUrl)
     //Get Data
     axios.get(fullUrl,{
         'Content-Type': 'application/json'

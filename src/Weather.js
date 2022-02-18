@@ -88,21 +88,17 @@ function Weather(props) {
      )
 
     //get Api data
-    const api='1e67c0bf8b80689eb8791ed890d004fc';
 
-    let fullUrl= ' https://api.openweathermap.org/data/2.5/onecall?lat='+props.lat+'&lon='+props.lon+'&appid='+api;
-    console.log('weather url:'+fullUrl)
+    // let fullUrl= ' https://api.openweathermap.org/data/2.5/one call?lat='+props.lat+'&lon='+props.lon+'&appid='+api;
+    let fullUrl = 'http://localhost:4000/weather?lat='+props.lat+'&lon='+props.lon;
   useEffect(()=>{ 
     if (props.country!=country || props.city!=city || props.lat!=lat) {
       axios.get(fullUrl,{
         'Content-Type': 'application/json'
     }).then(({data}) => {
-    // console.log(data['weather'][0])
-    // console.log(data['main'][0])
-    console.log(data['timezone'])
-    console.log(data['current'])
+    
     setWeather({timezone:data['timezone'],timezone_offset:data['timezone_offset'], current:data['current'], daily:data['daily']});
-    console.log("Weather: ", data)
+  
     setCity(props.city);
     setCountry(props.country);
     setLat(props.lat);
