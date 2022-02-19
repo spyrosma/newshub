@@ -41,7 +41,7 @@ render() {
     console.log('Props:',countryCode,categoryName,search,isSearch)
 
     // let fullUrl = isSearch===true ? (url+searchPre+search+api) : categoryName==='All' ? (url+country+countryCode+api) : (url+country+countryCode+category+categoryName+api) ;
-    let fullUrl='http://localhost:4000/news?country='+countryCode+'&category='+categoryName+'&search='+search+'&isSearch='+isSearch;
+    let fullUrl='https://newshub-server.herokuapp.com/news?country='+countryCode+'&category='+categoryName+'&search='+search+'&isSearch='+isSearch;
     console.log('FulUrl:',fullUrl)
     //Get Data
     axios.get(fullUrl,{

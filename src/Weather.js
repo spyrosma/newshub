@@ -90,7 +90,7 @@ function Weather(props) {
     //get Api data
 
     // let fullUrl= ' https://api.openweathermap.org/data/2.5/one call?lat='+props.lat+'&lon='+props.lon+'&appid='+api;
-    let fullUrl = 'http://localhost:4000/weather?lat='+props.lat+'&lon='+props.lon;
+    let fullUrl = 'https://newshub-server.herokuapp.com/weather?lat='+props.lat+'&lon='+props.lon;
   useEffect(()=>{ 
     if (props.country!=country || props.city!=city || props.lat!=lat) {
       axios.get(fullUrl,{

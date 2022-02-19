@@ -30,7 +30,7 @@ class App extends Component {
         
         //Get Geolocation info
         //axios.get('https://extreme-ip-lookup.com/json/?key=oxbC9wvdhr0mAXiwDspJ'
-        axios.get('http://localhost:4000/location',{
+        axios.get('https://newshub-server.herokuapp.com/location',{
             'Content-Type': 'application/json'
     }).then((response)=>{
             console.log('Data: '+JSON.stringify(response.data));
