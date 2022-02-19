@@ -139,7 +139,8 @@ class App extends Component {
     //function to find lat and long of a city
     handleCity = (cityName) => {
         const api='1e67c0bf8b80689eb8791ed890d004fc';
-        let fullUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+cityName+'&appid='+api;
+        // let fullUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+cityName+'&appid='+api;
+        let fullUrl = 'https://newshub-server.herokuapp.com/city?city='+cityName;
         axios.get(fullUrl,{
             'Content-Type': 'application/json'
     }).then((response)=>{
