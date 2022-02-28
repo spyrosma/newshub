@@ -14,7 +14,7 @@ code {
 
 fieldset {
   background-color: #eeeeee;
-  height: 70%;
+  height: 80%;
   width: 99%;
 }
 
@@ -29,6 +29,15 @@ legend {
 {
   display: none;
 }
+
+.weatherBtn
+{
+  display: none;
+}
+
+.weatherBtn1
+{display: none;}
+
 
 
 
@@ -55,7 +64,95 @@ legend {
 
 .formDisplay {
   display: grid;
+  grid-template-columns: 1fr  1fr 1fr 1fr;
+  grid-template-rows: 1fr 0.2fr; 
+  grid-template-areas: 
+    "zero first first  first"
+    "zero third  third third";
+}
+
+.continents {
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 0.2fr;
+  row-gap: 1rem;
+  grid-template-areas: 
+  "africa america asia europe oceania saveBar"
+  "searchBar searchBar searchBar searchBar searchBar searchBar ";
+}
+
+.africa {
+  grid-area: africa;
+}
+
+.america {
+  grid-area: america;
+}
+
+.asia {
+  grid-area: asia;
+}
+
+.europe {
+  grid-area: europe;
+}
+
+.oceania {
+  grid-area: oceania;
+}
+
+.searchBar {
+  grid-area: searchBar;
+}
+
+.saveBar {
+  grid-area: saveBar;
+}
+
+.saveBtn {
+  margin-bottom: 1rem;
+}
+
+.innerDiv {
+  display: inline;
+}
+
+.zero {
+  grid-area: zero;
+}
+
+.first {
+  grid-area: first;
+}
+
+
+.third {
+  grid-area: third;
+}
+
+.topLogo {
+  width: 300px;
+  height: 150px;
+
+}
+
+.iconFlag {
+  width: 20px;
+  height: 15px;
+}
+.flag {
+  margin-left: 5rem;
+  margin-right: 1rem;
+}
+
+.catBtn {
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.abtn{
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .carouselNews {
@@ -69,13 +166,14 @@ legend {
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 1rem;
   column-gap: 1rem;
-  padding-left: 1rem;
+  
 }
 
 .mainLayout {
   display: grid;
   grid-template-columns: 2fr 1fr;
   column-gap: 1rem;
+  padding-left: 1rem;
 }
 
 .card {
@@ -141,18 +239,44 @@ legend {
 
 @media only screen  and (max-width: 1199px) {
 
+  .weatherBtn {
+    display: block;
+    padding-left: 30%;
+    padding-right: auto;
+  }
+
+  .weatherBtn1 {
+    display: block;
+  }
+
   .formDisplay {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.4fr 0.4fr 0.2fr; 
+  grid-template-areas:
+    "zero"
+    "first"
+    "third";
   }
 
-  .first {
-    grid-row-start: 2;
+  .continents {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr 0.2fr;
+    row-gap: 1rem;
+    grid-template-areas: 
+    "africa america asia"
+    "europe oceania saveBar"
+    "searchBar searchBar searchBar";
   }
 
-  .second {
-    grid-row-start: 3;
+  .innerDiv {
+    display: block;
+    margin-bottom: 0.2rem;
+    padding-left: 15%;
+    padding-right: auto;
   }
+
 
 
   .newsgrid {
@@ -172,6 +296,52 @@ legend {
 }
 @media only screen and (max-width: 576px) {
 
+  .formDisplay {
+    width: 60%;
+    margin-left: 1rem;
+    display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.4fr 0.4fr 0.2fr; 
+  grid-template-areas:
+    "zero"
+    "firstM"
+    "thirdM";
+  }
+
+  .firstM {
+    grid-area: firstM;
+  }
+  
+  
+  .thirdM {
+    grid-area: thirdM;
+  }
+  .innerDiv {
+    display: block;
+    margin-bottom: 0.2rem;
+    padding-left: 0;
+    padding-right: 0;
+
+  }
+  .catBtn {
+    display: block;
+    margin-bottom: 1rem;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .continents {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 0.5fr 0.5fr 0.2fr;
+    row-gap: 1rem;
+    grid-template-areas: 
+    "africa america"
+    "asia europe"
+    "oceania saveBar"
+    "searchBar searchBar";
+  }
+
   #cardText {
     display: none;
   }
@@ -188,6 +358,8 @@ legend {
   .btnMobile
 {
   display: block;
+  padding-left: 30%;
+  padding-right: auto;
 }
 
 .first {
@@ -195,6 +367,10 @@ legend {
 }
 
 .second {
+  display: none;
+}
+
+.third {
   display: none;
 }
 
@@ -210,6 +386,7 @@ legend {
   }
   
   .mainLayout {
+    width: 70%;
     display: grid;
     grid-template-columns: 1fr;
     column-gap: 1rem;

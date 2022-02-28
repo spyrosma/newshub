@@ -96,7 +96,7 @@ class App extends Component {
         return (
         <>
         {/* Form for select countryCode, categories and search */}
-        <TopForm handleChange={this.handleChange} handleChangeCategory={this.handleChangeCategory} handleSearch={this.handleSearch} handleSave={this.handleSave} countryCode={this.state.countryCode} handleCity={this.handleCity} />
+        <TopForm handleChange={this.handleChange} handleChangeCategory={this.handleChangeCategory} handleSearch={this.handleSearch} handleSave={this.handleSave} countryCode={this.state.countryCode} handleCity={this.handleCity} isSearch={this.state.isSearch}/>
         <div className='mainLayout'>
         {/* display headlines by country */}
         <Headlines countryCode={this.state.countryCode} category={this.state.category} search={this.state.search} isSearch={this.state.isSearch} />
@@ -139,8 +139,7 @@ class App extends Component {
     //function to find lat and long of a city
     handleCity = (cityName) => {
         const api='1e67c0bf8b80689eb8791ed890d004fc';
-        // let fullUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+cityName+'&appid='+api;
-        let fullUrl = 'https://newshub-server.herokuapp.com/city?city='+cityName;
+        let fullUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+cityName+'&appid='+api;
         axios.get(fullUrl,{
             'Content-Type': 'application/json'
     }).then((response)=>{

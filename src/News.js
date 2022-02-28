@@ -19,8 +19,8 @@ function News(props) {
         let image = item.urlToImage 
         //display News
         return (
-        <div key={index}>
-        <Card  border="info" className='card'>
+        
+        <Card  key={index}>
             <Card.Img variant="top"  src={image ? image : logo} onError={event => {
           event.target.src = logo
           event.onerror = null
@@ -30,16 +30,15 @@ function News(props) {
             <Card.Text className='cardTitle' id='cardText'>
             {content}
             </Card.Text>
-            <Button variant="primary" onClick={()=>{window.open(item.url, "_blank")}}>Read Full Story</Button>
+            <Button variant="primary" onClick={()=>{window.open(item.url, "_blank", 'noopener')}}>Read Full Story</Button>
             </Card.Body>
             <Card.Footer className="text-muted"> 
-              Source: <a href={item.url } target="_blank" rel="noreferrer"> {item.source.name}</a><br></br> 
+              Source: <a href={item.url } target="_blank" rel="noopener noreferrer"> {item.source.name}</a><br></br> 
               Author: {item.author}<br></br>
               Published At: {format(parseISO(item.publishedAt),"dd-MM-yyyy HH:mm")}
             </Card.Footer>
       </Card>
       
-      </div>
         )
     }
     )

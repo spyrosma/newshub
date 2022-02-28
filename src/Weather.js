@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect }  from 'react'
+import Button from 'react-bootstrap/Button'
 import Accordion from 'react-bootstrap/Accordion'
 import Card from 'react-bootstrap/Card'
 
@@ -14,14 +15,14 @@ function Weather(props) {
     //daily forecast
     const days  = [0,1,2,3,4,5,6,7]
     const [complete,setComplete] = useState(false);
-    const wDays = complete==false ? <div></div> : days.map((day) => 
+    const wDays = complete===false ? <div></div> : days.map((day) => 
     
     <Accordion.Item eventKey={day}>
         <Accordion.Header>
         <table className='wTable'>
       <tr>
         <td>{convertDate(weather['daily'][day]['dt'])}</td>
-        <td rowSpan='2'><img  src={getIcon(weather['daily'][day]['weather'][0]['icon'])}></img></td>
+        <td rowSpan='2'><img alt='' src={getIcon(weather['daily'][day]['weather'][0]['icon'])}></img></td>
       </tr>
       <tr>
         <td> {convertTemp(weather['daily'][day]['temp']['max'],metric)} / {convertTemp(weather['daily'][day]['temp']['min'],metric)}  {weather['daily'][day]['weather'][0]['description']}</td>
@@ -93,7 +94,7 @@ function Weather(props) {
     
   useEffect(()=>{ 
     let fullUrl = 'https://newshub-server.herokuapp.com/weather?lat='+props.lat+'&lon='+props.lon;
-    if (props.country!=country || props.city!=city || props.lat!=lat) {
+    if (props.country!==country || props.city!==city || props.lat!==lat) {
       axios.get(fullUrl,{
         'Content-Type': 'application/json'
     }).then(({data}) => {
@@ -109,16 +110,21 @@ function Weather(props) {
   })
 
 //Return Weather component
-if (complete==true) {
-return <div bg="warning" className='weather'>
+if (complete===true) {
+return <div bg="warning" className='weather' id='weather'>
     <h1>Weather Forecast</h1>
+    <div className='weatherBtn1'>
+        <a href="#top">
+                <Button variant='info'>Back to Top</Button>
+            </a>
+        </div>
     <Card bg="warning" style={{ width: '100%', height: 'fit-content' }}>
       <Card.Body>
-      <div onClick={(event)=> {event.target.value=='Metric' ? setMetric(true) : setMetric(false)}}>
+      <div onClick={(event)=> {event.target.value==='Metric' ? setMetric(true) : setMetric(false)}}>
         <input type="radio" checked={metric} value="Metric" name="system" /> Metric
         <input type="radio" checked={!metric} value="Imperial" name="system" /> Imperial
       </div>
-       <Card.Title><img src={getIcon(weather['current']['weather'][0]['icon'])}></img> {props.city}</Card.Title>
+       <Card.Title><img alt='' src={getIcon(weather['current']['weather'][0]['icon'])}></img> {props.city}</Card.Title>
        <Card.Subtitle className="mb-2 text-muted">Timezone: {weather['timezone']} UTC{utcOffset(weather['timezone_offset'])}</Card.Subtitle>
        <Card.Text>
         <p>Sunrise: {convertTime(weather['current']['sunrise'],utcOffset(weather['timezone_offset']))} -
@@ -153,7 +159,7 @@ function getIcon(iconCode) {
 
 //convert temp
 function convertTemp(temp, metric=true) {
-  if (metric==true) {
+  if (metric===true) {
   return ''+ Math.round(temp-273.15)+ ' °C';
 }
 else 
@@ -161,7 +167,7 @@ return ''+ Math.round((temp-273.15)*(9/5)+32)+' °F'
 }
 
 function convertSpeed(speed,metric=true){
-  if (metric==true) {
+  if (metric===true) {
     return ''+ parseFloat(speed).toFixed(2)+ ' m/sec'
   } else {
     return ''+ parseFloat(speed*2.23694).toFixed(2) + ' miles/hour'
