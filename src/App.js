@@ -139,7 +139,7 @@ class App extends Component {
     //function to find lat and long of a city
     handleCity = (cityName) => {
         const api='1e67c0bf8b80689eb8791ed890d004fc';
-        let fullUrl = 'http://api.openweathermap.org/geo/1.0/direct?q='+cityName+'&appid='+api;
+        let fullUrl = 'https://thingproxy.freeboard.io/fetch/http://api.openweathermap.org/geo/1.0/direct?q='+cityName+'&appid='+api;
         axios.get(fullUrl,{
             'Content-Type': 'application/json'
     }).then((response)=>{
